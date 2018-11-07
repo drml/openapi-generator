@@ -4,6 +4,7 @@
 
 import * as url from "url";
 import * as portableFetch from "portable-fetch";
+import * as qs from "qs";
 import { Configuration } from "./configuration";
 
 const BASE_PATH: string = "{{{basePath}}}".replace(/\/+$/, "");
@@ -205,9 +206,10 @@ export const {{classname}}FetchParamCreator = function (configuration?: Configur
             {{/consumes.0}}
 
     {{/bodyParam}}
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
+            localVarUrlObj.search = qs.stringify(
+                Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query),
+                { encodeValuesOnly: true }
+            );
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
     {{#hasFormParams}}
             localVarRequestOptions.body = localVarFormParams;
