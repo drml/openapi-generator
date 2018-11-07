@@ -53,24 +53,16 @@ public class JavascriptFlowtypedClientCodegen extends AbstractTypeScriptClientCo
                 // local variable names used in API methods (endpoints)
                 "varLocalPath", "queryParameters", "headerParams", "formParams", "useFormData", "varLocalDeferred",
                 "requestOptions",
-                // Typescript reserved words
-                "abstract", "arguments", "boolean", "break", "byte",
-                "case", "catch", "char", "class", "const",
-                "continue", "debugger", "default", "delete", "do",
-                "double", "else", "enum", "eval", "export",
-                "extends", "false", "final", "finally", "float",
-                "for", "function", "goto", "if", "implements",
-                "import", "in", "instanceof", "int", "interface",
-                "let", "long", "native", "new", "null",
-                "package", "private", "protected", "public", "return",
-                "short", "static", "super", "switch", "synchronized",
-                "this", "throw", "throws", "transient", "true",
-                "try", "typeof", "var", "void", "volatile",
-                "while", "with", "yield",
-                "Array", "Date", "eval", "function", "hasOwnProperty",
-                "Infinity", "isFinite", "isNaN", "isPrototypeOf",
-                "Math", "NaN", "Number", "Object",
-                "prototype", "String", "toString", "undefined", "valueOf"));
+
+                // ES2015 Keywords
+                "break", "do", "in", "typeof", "case", "else", "instanceof", "var", "catch",
+                "export", "new", "void", "class", "extends", "return", "while", "const",
+                "finally", "super", "with", "continue", "for", "switch", "yield", "debugger",
+                "function", "this", "default", "if", "throw", "delete", "import", "try", "let",
+                // ES2015 Future Reserved Words
+                "enum","await",
+                // ES2015 Null Literals and Boolean Literals
+                "null", "true", "false"));
 
         languageSpecificPrimitives = new HashSet<String>(
                 Arrays.asList("string", "boolean", "number", "Array", "Object", "Date", "File", "Blob")
