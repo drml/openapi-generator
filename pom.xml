@@ -231,8 +231,9 @@
                     <source>1.8</source>
                     <encoding>UTF-8</encoding>
                     <maxmemory>1g</maxmemory>
-                    <failOnWarnings>true</failOnWarnings>
+                    <failOnWarnings>false</failOnWarnings>
                     <excludePackageNames>${javadoc.package.exclude}</excludePackageNames>
+                    <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
                 </configuration>
                 <executions>
                     <execution>
