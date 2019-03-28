@@ -4,6 +4,7 @@ All URIs are relative to *http://petstore.swagger.io:80/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**createXmlItem**](FakeApi.md#createXmlItem) | **POST** fake/create_xml_item | creates an XmlItem
 [**fakeOuterBooleanSerialize**](FakeApi.md#fakeOuterBooleanSerialize) | **POST** fake/outer/boolean | 
 [**fakeOuterCompositeSerialize**](FakeApi.md#fakeOuterCompositeSerialize) | **POST** fake/outer/composite | 
 [**fakeOuterNumberSerialize**](FakeApi.md#fakeOuterNumberSerialize) | **POST** fake/outer/number | 
@@ -18,8 +19,56 @@ Method | HTTP request | Description
 [**testJsonFormData**](FakeApi.md#testJsonFormData) | **GET** fake/jsonFormData | test json serialization of form data
 
 
-<a name="fakeOuterBooleanSerialize"></a>
-# **fakeOuterBooleanSerialize**
+
+## createXmlItem
+
+> createXmlItem(xmlItem)
+
+creates an XmlItem
+
+this route creates an XmlItem
+
+### Example
+
+```java
+// Import classes:
+//import org.openapitools.client.ApiException;
+//import org.openapitools.client.api.FakeApi;
+
+
+FakeApi apiInstance = new FakeApi();
+XmlItem xmlItem = new XmlItem(); // XmlItem | XmlItem Body
+try {
+    apiInstance.createXmlItem(xmlItem);
+} catch (ApiException e) {
+    System.err.println("Exception when calling FakeApi#createXmlItem");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xmlItem** | [**XmlItem**](XmlItem.md)| XmlItem Body |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/xml, application/xml; charset=utf-8, application/xml; charset=utf-16, text/xml, text/xml; charset=utf-8, text/xml; charset=utf-16
+- **Accept**: Not defined
+
+
+## fakeOuterBooleanSerialize
+
 > Boolean fakeOuterBooleanSerialize(body)
 
 
@@ -27,6 +76,7 @@ Method | HTTP request | Description
 Test serialization of outer boolean types
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.ApiException;
@@ -46,6 +96,7 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **Boolean**| Input boolean as post body | [optional]
@@ -60,18 +111,20 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: */*
+- **Content-Type**: Not defined
+- **Accept**: */*
 
-<a name="fakeOuterCompositeSerialize"></a>
-# **fakeOuterCompositeSerialize**
-> OuterComposite fakeOuterCompositeSerialize(outerComposite)
+
+## fakeOuterCompositeSerialize
+
+> OuterComposite fakeOuterCompositeSerialize(body)
 
 
 
 Test serialization of object with outer number type
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.ApiException;
@@ -79,9 +132,9 @@ Test serialization of object with outer number type
 
 
 FakeApi apiInstance = new FakeApi();
-OuterComposite outerComposite = new OuterComposite(); // OuterComposite | Input composite as post body
+OuterComposite body = new OuterComposite(); // OuterComposite | Input composite as post body
 try {
-    OuterComposite result = apiInstance.fakeOuterCompositeSerialize(outerComposite);
+    OuterComposite result = apiInstance.fakeOuterCompositeSerialize(body);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling FakeApi#fakeOuterCompositeSerialize");
@@ -91,9 +144,10 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **outerComposite** | [**OuterComposite**](OuterComposite.md)| Input composite as post body | [optional]
+ **body** | [**OuterComposite**](OuterComposite.md)| Input composite as post body | [optional]
 
 ### Return type
 
@@ -105,11 +159,12 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: */*
+- **Content-Type**: Not defined
+- **Accept**: */*
 
-<a name="fakeOuterNumberSerialize"></a>
-# **fakeOuterNumberSerialize**
+
+## fakeOuterNumberSerialize
+
 > BigDecimal fakeOuterNumberSerialize(body)
 
 
@@ -117,6 +172,7 @@ No authorization required
 Test serialization of outer number types
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.ApiException;
@@ -136,6 +192,7 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **BigDecimal**| Input number as post body | [optional]
@@ -150,11 +207,12 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: */*
+- **Content-Type**: Not defined
+- **Accept**: */*
 
-<a name="fakeOuterStringSerialize"></a>
-# **fakeOuterStringSerialize**
+
+## fakeOuterStringSerialize
+
 > String fakeOuterStringSerialize(body)
 
 
@@ -162,6 +220,7 @@ No authorization required
 Test serialization of outer string types
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.ApiException;
@@ -181,6 +240,7 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **String**| Input string as post body | [optional]
@@ -195,18 +255,20 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: */*
+- **Content-Type**: Not defined
+- **Accept**: */*
 
-<a name="testBodyWithFileSchema"></a>
-# **testBodyWithFileSchema**
-> testBodyWithFileSchema(fileSchemaTestClass)
+
+## testBodyWithFileSchema
+
+> testBodyWithFileSchema(body)
 
 
 
 For this test, the body for this request much reference a schema named &#x60;File&#x60;.
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.ApiException;
@@ -214,9 +276,9 @@ For this test, the body for this request much reference a schema named &#x60;Fil
 
 
 FakeApi apiInstance = new FakeApi();
-FileSchemaTestClass fileSchemaTestClass = new FileSchemaTestClass(); // FileSchemaTestClass | 
+FileSchemaTestClass body = new FileSchemaTestClass(); // FileSchemaTestClass | 
 try {
-    apiInstance.testBodyWithFileSchema(fileSchemaTestClass);
+    apiInstance.testBodyWithFileSchema(body);
 } catch (ApiException e) {
     System.err.println("Exception when calling FakeApi#testBodyWithFileSchema");
     e.printStackTrace();
@@ -225,9 +287,10 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fileSchemaTestClass** | [**FileSchemaTestClass**](FileSchemaTestClass.md)|  |
+ **body** | [**FileSchemaTestClass**](FileSchemaTestClass.md)|  |
 
 ### Return type
 
@@ -239,16 +302,18 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: Not defined
+- **Content-Type**: application/json
+- **Accept**: Not defined
 
-<a name="testBodyWithQueryParams"></a>
-# **testBodyWithQueryParams**
-> testBodyWithQueryParams(query, user)
+
+## testBodyWithQueryParams
+
+> testBodyWithQueryParams(query, body)
 
 
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.ApiException;
@@ -257,9 +322,9 @@ No authorization required
 
 FakeApi apiInstance = new FakeApi();
 String query = "query_example"; // String | 
-User user = new User(); // User | 
+User body = new User(); // User | 
 try {
-    apiInstance.testBodyWithQueryParams(query, user);
+    apiInstance.testBodyWithQueryParams(query, body);
 } catch (ApiException e) {
     System.err.println("Exception when calling FakeApi#testBodyWithQueryParams");
     e.printStackTrace();
@@ -268,10 +333,11 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **query** | **String**|  |
- **user** | [**User**](User.md)|  |
+ **body** | [**User**](User.md)|  |
 
 ### Return type
 
@@ -283,18 +349,20 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: Not defined
+- **Content-Type**: application/json
+- **Accept**: Not defined
 
-<a name="testClientModel"></a>
-# **testClientModel**
-> Client testClientModel(client)
+
+## testClientModel
+
+> Client testClientModel(body)
 
 To test \&quot;client\&quot; model
 
 To test \&quot;client\&quot; model
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.ApiException;
@@ -302,9 +370,9 @@ To test \&quot;client\&quot; model
 
 
 FakeApi apiInstance = new FakeApi();
-Client client = new Client(); // Client | client model
+Client body = new Client(); // Client | client model
 try {
-    Client result = apiInstance.testClientModel(client);
+    Client result = apiInstance.testClientModel(body);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling FakeApi#testClientModel");
@@ -314,9 +382,10 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **client** | [**Client**](Client.md)| client model |
+ **body** | [**Client**](Client.md)| client model |
 
 ### Return type
 
@@ -328,11 +397,12 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-<a name="testEndpointParameters"></a>
-# **testEndpointParameters**
+
+## testEndpointParameters
+
 > testEndpointParameters(number, _double, patternWithoutDelimiter, _byte, integer, int32, int64, _float, string, binary, date, dateTime, password, paramCallback)
 
 Fake endpoint for testing various parameters 假端點 偽のエンドポイント 가짜 엔드 포인트 
@@ -340,6 +410,7 @@ Fake endpoint for testing various parameters 假端點 偽のエンドポイン�
 Fake endpoint for testing various parameters 假端點 偽のエンドポイント 가짜 엔드 포인트 
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.ApiClient;
@@ -380,6 +451,7 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **number** | **BigDecimal**| None |
@@ -407,11 +479,12 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: Not defined
+- **Content-Type**: application/x-www-form-urlencoded
+- **Accept**: Not defined
 
-<a name="testEnumParameters"></a>
-# **testEnumParameters**
+
+## testEnumParameters
+
 > testEnumParameters(enumHeaderStringArray, enumHeaderString, enumQueryStringArray, enumQueryString, enumQueryInteger, enumQueryDouble, enumFormStringArray, enumFormString)
 
 To test enum parameters
@@ -419,6 +492,7 @@ To test enum parameters
 To test enum parameters
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.ApiException;
@@ -444,6 +518,7 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **enumHeaderStringArray** | [**List&lt;String&gt;**](String.md)| Header parameter enum test (string array) | [optional] [enum: >, $]
@@ -465,18 +540,20 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: Not defined
+- **Content-Type**: application/x-www-form-urlencoded
+- **Accept**: Not defined
 
-<a name="testGroupParameters"></a>
-# **testGroupParameters**
-> testGroupParameters(stringGroup, booleanGroup, int64Group)
+
+## testGroupParameters
+
+> testGroupParameters(requiredStringGroup, requiredBooleanGroup, requiredInt64Group, stringGroup, booleanGroup, int64Group)
 
 Fake endpoint to test group parameters (optional)
 
 Fake endpoint to test group parameters (optional)
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.ApiException;
@@ -484,11 +561,14 @@ Fake endpoint to test group parameters (optional)
 
 
 FakeApi apiInstance = new FakeApi();
+Integer requiredStringGroup = 56; // Integer | Required String in group parameters
+Boolean requiredBooleanGroup = true; // Boolean | Required Boolean in group parameters
+Long requiredInt64Group = 56L; // Long | Required Integer in group parameters
 Integer stringGroup = 56; // Integer | String in group parameters
 Boolean booleanGroup = true; // Boolean | Boolean in group parameters
 Long int64Group = 56L; // Long | Integer in group parameters
 try {
-    apiInstance.testGroupParameters(stringGroup, booleanGroup, int64Group);
+    apiInstance.testGroupParameters(requiredStringGroup, requiredBooleanGroup, requiredInt64Group, stringGroup, booleanGroup, int64Group);
 } catch (ApiException e) {
     System.err.println("Exception when calling FakeApi#testGroupParameters");
     e.printStackTrace();
@@ -497,8 +577,12 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **requiredStringGroup** | **Integer**| Required String in group parameters |
+ **requiredBooleanGroup** | **Boolean**| Required Boolean in group parameters |
+ **requiredInt64Group** | **Long**| Required Integer in group parameters |
  **stringGroup** | **Integer**| String in group parameters | [optional]
  **booleanGroup** | **Boolean**| Boolean in group parameters | [optional]
  **int64Group** | **Long**| Integer in group parameters | [optional]
@@ -513,16 +597,18 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
-<a name="testInlineAdditionalProperties"></a>
-# **testInlineAdditionalProperties**
-> testInlineAdditionalProperties(requestBody)
+
+## testInlineAdditionalProperties
+
+> testInlineAdditionalProperties(param)
 
 test inline additionalProperties
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.ApiException;
@@ -530,9 +616,9 @@ test inline additionalProperties
 
 
 FakeApi apiInstance = new FakeApi();
-Map<String, String> requestBody = new HashMap(); // Map<String, String> | request body
+Map<String, String> param = new HashMap(); // Map<String, String> | request body
 try {
-    apiInstance.testInlineAdditionalProperties(requestBody);
+    apiInstance.testInlineAdditionalProperties(param);
 } catch (ApiException e) {
     System.err.println("Exception when calling FakeApi#testInlineAdditionalProperties");
     e.printStackTrace();
@@ -541,9 +627,10 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **requestBody** | [**Map&lt;String, String&gt;**](String.md)| request body |
+ **param** | [**Map&lt;String, String&gt;**](String.md)| request body |
 
 ### Return type
 
@@ -555,16 +642,18 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: Not defined
+- **Content-Type**: application/json
+- **Accept**: Not defined
 
-<a name="testJsonFormData"></a>
-# **testJsonFormData**
+
+## testJsonFormData
+
 > testJsonFormData(param, param2)
 
 test json serialization of form data
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.ApiException;
@@ -584,6 +673,7 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **param** | **String**| field1 |
@@ -599,6 +689,6 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: Not defined
+- **Content-Type**: application/x-www-form-urlencoded
+- **Accept**: Not defined
 

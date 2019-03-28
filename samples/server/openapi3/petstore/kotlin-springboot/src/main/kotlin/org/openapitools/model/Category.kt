@@ -13,10 +13,10 @@ import io.swagger.annotations.ApiModelProperty
  */
 data class Category (
 
-        @ApiModelProperty(value = "")
+        @ApiModelProperty(example = "null", value = "")
         @JsonProperty("id") val id: Long? = null,
-
-        @ApiModelProperty(value = "")
+@get:Pattern(regexp="^[a-zA-Z0-9]+[a-zA-Z0-9\\.\\-_]*[a-zA-Z0-9]+$") 
+        @ApiModelProperty(example = "null", value = "")
         @JsonProperty("name") val name: String? = null
 ) {
 

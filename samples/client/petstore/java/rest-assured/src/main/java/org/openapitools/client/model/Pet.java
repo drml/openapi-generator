@@ -51,7 +51,7 @@ public class Pet {
 
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
-  private List<Tag> tags = null;
+  private List<Tag> tags = new ArrayList<Tag>();
 
   /**
    * pet status in the store
@@ -79,13 +79,13 @@ public class Pet {
       return String.valueOf(value);
     }
 
-    public static StatusEnum fromValue(String text) {
+    public static StatusEnum fromValue(String value) {
       for (StatusEnum b : StatusEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(value)) {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + text + "'");
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
 
     public static class Adapter extends TypeAdapter<StatusEnum> {
@@ -97,7 +97,7 @@ public class Pet {
       @Override
       public StatusEnum read(final JsonReader jsonReader) throws IOException {
         String value = jsonReader.nextString();
-        return StatusEnum.fromValue(String.valueOf(value));
+        return StatusEnum.fromValue(value);
       }
     }
   }
@@ -255,7 +255,6 @@ public class Pet {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Pet {\n");
-    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");

@@ -1,15 +1,26 @@
 import 'package:jaguar_serializer/jaguar_serializer.dart';
 
+
 part 'category.jser.dart';
 
 class Category {
+  
   @Alias('id')
   final int id;
-
+  
   @Alias('name')
   final String name;
+  
 
-  Category({this.id = null, this.name = null});
+  Category(
+      
+
+{
+     this.id = null,  
+     this.name = null 
+    
+    }
+  );
 
   @override
   String toString() {
@@ -17,6 +28,8 @@ class Category {
   }
 }
 
-@GenSerializer()
-class CategorySerializer extends Serializer<Category>
-    with _$CategorySerializer {}
+@GenSerializer(nullableFields: true)
+class CategorySerializer extends Serializer<Category> with _$CategorySerializer {
+
+}
+

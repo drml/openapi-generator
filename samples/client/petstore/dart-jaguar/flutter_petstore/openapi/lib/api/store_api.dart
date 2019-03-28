@@ -1,20 +1,20 @@
 import 'package:jaguar_retrofit/annotations/annotations.dart';
 import 'package:jaguar_retrofit/jaguar_retrofit.dart';
 import 'package:jaguar_serializer/jaguar_serializer.dart';
-import 'package:jaguar_serializer/src/repo/repo.dart';
+import 'package:jaguar_mimetype/jaguar_mimetype.dart';
 import 'dart:async';
 
 import 'package:openapi/model/order.dart';
 
-
 part 'store_api.jretro.dart';
 
 @GenApiClient()
-class StoreApi extends _$StoreApiClient implements ApiClient {
+class StoreApi extends ApiClient with _$StoreApiClient {
     final Route base;
-    final SerializerRepo serializers;
+    final Map<String, CodecRepo> converters;
+    final Duration timeout;
 
-    StoreApi({this.base, this.serializers});
+    StoreApi({this.base, this.converters, this.timeout = const Duration(minutes: 2)});
 
     /// Delete purchase order by ID
     ///
@@ -22,14 +22,23 @@ class StoreApi extends _$StoreApiClient implements ApiClient {
     @DeleteReq(path: "/store/order/:orderId")
     Future<void> deleteOrder(
             @PathParam("orderId") String orderId
-    );
+        ) {
+        return super.deleteOrder(
+        orderId
+
+        ).timeout(timeout);
+    }
 
     /// Returns pet inventories by status
     ///
     /// Returns a map of status codes to quantities
     @GetReq(path: "/store/inventory", metadata: {"auth": [ {"type": "apiKey", "name": "api_key", "keyName": "api_key", "where": "header" }]})
     Future<Map<String, int>> getInventory(
-    );
+        ) {
+        return super.getInventory(
+
+        ).timeout(timeout);
+    }
 
     /// Find purchase order by ID
     ///
@@ -37,16 +46,27 @@ class StoreApi extends _$StoreApiClient implements ApiClient {
     @GetReq(path: "/store/order/:orderId")
     Future<Order> getOrderById(
             @PathParam("orderId") int orderId
-    );
+        ) {
+        return super.getOrderById(
+        orderId
+
+        ).timeout(timeout);
+    }
 
     /// Place an order for a pet
     ///
     /// 
     @PostReq(path: "/store/order")
     Future<Order> placeOrder(
+            
+             @AsJson() Order body
+        ) {
+        return super.placeOrder(
+
         
-        @AsJson() Order order
-    );
+        body
+        ).timeout(timeout);
+    }
 
 
 }

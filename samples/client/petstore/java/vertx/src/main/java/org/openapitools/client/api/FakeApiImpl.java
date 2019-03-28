@@ -4,10 +4,11 @@ import io.vertx.core.file.AsyncFile;
 import java.math.BigDecimal;
 import org.openapitools.client.model.Client;
 import org.openapitools.client.model.FileSchemaTestClass;
-import org.threeten.bp.LocalDate;
-import org.threeten.bp.OffsetDateTime;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
 import org.openapitools.client.model.OuterComposite;
 import org.openapitools.client.model.User;
+import org.openapitools.client.model.XmlItem;
 
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Handler;
@@ -45,6 +46,40 @@ public class FakeApiImpl implements FakeApi {
     }
 
     /**
+     * creates an XmlItem
+     * this route creates an XmlItem
+     * @param xmlItem XmlItem Body (required)
+     * @param resultHandler Asynchronous result handler
+     */
+    public void createXmlItem(XmlItem xmlItem, Handler<AsyncResult<Void>> resultHandler) {
+        Object localVarBody = xmlItem;
+        
+        // verify the required parameter 'xmlItem' is set
+        if (xmlItem == null) {
+            resultHandler.handle(ApiException.fail(400, "Missing the required parameter 'xmlItem' when calling createXmlItem"));
+            return;
+        }
+        
+        // create path and map variables
+        String localVarPath = "/fake/create_xml_item";
+
+        // query params
+        List<Pair> localVarQueryParams = new ArrayList<>();
+
+        // header params
+        MultiMap localVarHeaderParams = MultiMap.caseInsensitiveMultiMap();
+        
+        // form params
+        // TODO: sending files within multipart/form-data is not supported yet (because of vertx web-client)
+        Map<String, Object> localVarFormParams = new HashMap<>();
+        
+        String[] localVarAccepts = {  };
+        String[] localVarContentTypes = { "application/xml", "application/xml; charset=utf-8", "application/xml; charset=utf-16", "text/xml", "text/xml; charset=utf-8", "text/xml; charset=utf-16" };
+        String[] localVarAuthNames = new String[] {  };
+
+        apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarBody, localVarHeaderParams, localVarFormParams, localVarAccepts, localVarContentTypes, localVarAuthNames, null, resultHandler);
+    }
+    /**
      * 
      * Test serialization of outer boolean types
      * @param body Input boolean as post body (optional)
@@ -75,11 +110,11 @@ public class FakeApiImpl implements FakeApi {
     /**
      * 
      * Test serialization of object with outer number type
-     * @param outerComposite Input composite as post body (optional)
+     * @param body Input composite as post body (optional)
      * @param resultHandler Asynchronous result handler
      */
-    public void fakeOuterCompositeSerialize(OuterComposite outerComposite, Handler<AsyncResult<OuterComposite>> resultHandler) {
-        Object localVarBody = outerComposite;
+    public void fakeOuterCompositeSerialize(OuterComposite body, Handler<AsyncResult<OuterComposite>> resultHandler) {
+        Object localVarBody = body;
         
         // create path and map variables
         String localVarPath = "/fake/outer/composite";
@@ -159,15 +194,15 @@ public class FakeApiImpl implements FakeApi {
     /**
      * 
      * For this test, the body for this request much reference a schema named &#x60;File&#x60;.
-     * @param fileSchemaTestClass  (required)
+     * @param body  (required)
      * @param resultHandler Asynchronous result handler
      */
-    public void testBodyWithFileSchema(FileSchemaTestClass fileSchemaTestClass, Handler<AsyncResult<Void>> resultHandler) {
-        Object localVarBody = fileSchemaTestClass;
+    public void testBodyWithFileSchema(FileSchemaTestClass body, Handler<AsyncResult<Void>> resultHandler) {
+        Object localVarBody = body;
         
-        // verify the required parameter 'fileSchemaTestClass' is set
-        if (fileSchemaTestClass == null) {
-            resultHandler.handle(ApiException.fail(400, "Missing the required parameter 'fileSchemaTestClass' when calling testBodyWithFileSchema"));
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            resultHandler.handle(ApiException.fail(400, "Missing the required parameter 'body' when calling testBodyWithFileSchema"));
             return;
         }
         
@@ -194,11 +229,11 @@ public class FakeApiImpl implements FakeApi {
      * 
      * 
      * @param query  (required)
-     * @param user  (required)
+     * @param body  (required)
      * @param resultHandler Asynchronous result handler
      */
-    public void testBodyWithQueryParams(String query, User user, Handler<AsyncResult<Void>> resultHandler) {
-        Object localVarBody = user;
+    public void testBodyWithQueryParams(String query, User body, Handler<AsyncResult<Void>> resultHandler) {
+        Object localVarBody = body;
         
         // verify the required parameter 'query' is set
         if (query == null) {
@@ -206,9 +241,9 @@ public class FakeApiImpl implements FakeApi {
             return;
         }
         
-        // verify the required parameter 'user' is set
-        if (user == null) {
-            resultHandler.handle(ApiException.fail(400, "Missing the required parameter 'user' when calling testBodyWithQueryParams"));
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            resultHandler.handle(ApiException.fail(400, "Missing the required parameter 'body' when calling testBodyWithQueryParams"));
             return;
         }
         
@@ -235,15 +270,15 @@ public class FakeApiImpl implements FakeApi {
     /**
      * To test \&quot;client\&quot; model
      * To test \&quot;client\&quot; model
-     * @param client client model (required)
+     * @param body client model (required)
      * @param resultHandler Asynchronous result handler
      */
-    public void testClientModel(Client client, Handler<AsyncResult<Client>> resultHandler) {
-        Object localVarBody = client;
+    public void testClientModel(Client body, Handler<AsyncResult<Client>> resultHandler) {
+        Object localVarBody = body;
         
-        // verify the required parameter 'client' is set
-        if (client == null) {
-            resultHandler.handle(ApiException.fail(400, "Missing the required parameter 'client' when calling testClientModel"));
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            resultHandler.handle(ApiException.fail(400, "Missing the required parameter 'body' when calling testClientModel"));
             return;
         }
         
@@ -393,25 +428,50 @@ if (enumFormString != null) localVarFormParams.put("enum_form_string", enumFormS
     /**
      * Fake endpoint to test group parameters (optional)
      * Fake endpoint to test group parameters (optional)
+     * @param requiredStringGroup Required String in group parameters (required)
+     * @param requiredBooleanGroup Required Boolean in group parameters (required)
+     * @param requiredInt64Group Required Integer in group parameters (required)
      * @param stringGroup String in group parameters (optional)
      * @param booleanGroup Boolean in group parameters (optional)
      * @param int64Group Integer in group parameters (optional)
      * @param resultHandler Asynchronous result handler
      */
-    public void testGroupParameters(Integer stringGroup, Boolean booleanGroup, Long int64Group, Handler<AsyncResult<Void>> resultHandler) {
+    public void testGroupParameters(Integer requiredStringGroup, Boolean requiredBooleanGroup, Long requiredInt64Group, Integer stringGroup, Boolean booleanGroup, Long int64Group, Handler<AsyncResult<Void>> resultHandler) {
         Object localVarBody = null;
+        
+        // verify the required parameter 'requiredStringGroup' is set
+        if (requiredStringGroup == null) {
+            resultHandler.handle(ApiException.fail(400, "Missing the required parameter 'requiredStringGroup' when calling testGroupParameters"));
+            return;
+        }
+        
+        // verify the required parameter 'requiredBooleanGroup' is set
+        if (requiredBooleanGroup == null) {
+            resultHandler.handle(ApiException.fail(400, "Missing the required parameter 'requiredBooleanGroup' when calling testGroupParameters"));
+            return;
+        }
+        
+        // verify the required parameter 'requiredInt64Group' is set
+        if (requiredInt64Group == null) {
+            resultHandler.handle(ApiException.fail(400, "Missing the required parameter 'requiredInt64Group' when calling testGroupParameters"));
+            return;
+        }
         
         // create path and map variables
         String localVarPath = "/fake";
 
         // query params
         List<Pair> localVarQueryParams = new ArrayList<>();
+        localVarQueryParams.addAll(apiClient.parameterToPairs("", "required_string_group", requiredStringGroup));
+        localVarQueryParams.addAll(apiClient.parameterToPairs("", "required_int64_group", requiredInt64Group));
         localVarQueryParams.addAll(apiClient.parameterToPairs("", "string_group", stringGroup));
         localVarQueryParams.addAll(apiClient.parameterToPairs("", "int64_group", int64Group));
 
         // header params
         MultiMap localVarHeaderParams = MultiMap.caseInsensitiveMultiMap();
-        if (booleanGroup != null)
+        if (requiredBooleanGroup != null)
+        localVarHeaderParams.add("required_boolean_group", apiClient.parameterToString(requiredBooleanGroup));
+if (booleanGroup != null)
         localVarHeaderParams.add("boolean_group", apiClient.parameterToString(booleanGroup));
 
         // form params
@@ -427,15 +487,15 @@ if (enumFormString != null) localVarFormParams.put("enum_form_string", enumFormS
     /**
      * test inline additionalProperties
      * 
-     * @param requestBody request body (required)
+     * @param param request body (required)
      * @param resultHandler Asynchronous result handler
      */
-    public void testInlineAdditionalProperties(Map<String, String> requestBody, Handler<AsyncResult<Void>> resultHandler) {
-        Object localVarBody = requestBody;
+    public void testInlineAdditionalProperties(Map<String, String> param, Handler<AsyncResult<Void>> resultHandler) {
+        Object localVarBody = param;
         
-        // verify the required parameter 'requestBody' is set
-        if (requestBody == null) {
-            resultHandler.handle(ApiException.fail(400, "Missing the required parameter 'requestBody' when calling testInlineAdditionalProperties"));
+        // verify the required parameter 'param' is set
+        if (param == null) {
+            resultHandler.handle(ApiException.fail(400, "Missing the required parameter 'param' when calling testInlineAdditionalProperties"));
             return;
         }
         

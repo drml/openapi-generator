@@ -1,3 +1,11 @@
+{{#protoFormat}}
+message {{classname}} {
+    {{#vars}}
+    {{#vendorExtensions}}{{{x-proto-type}}} {{name}} = {{x-index}}{{/vendorExtensions}};
+    {{/vars}}
+}
+{{/protoFormat}}
+{{#jsonFormat}}
 part '{{classFilename}}.jser.dart';
 
 class {{classname}} {
@@ -7,7 +15,7 @@ class {{classname}} {
   {{#allowableValues}}{{#min}} // range from {{min}} to {{max}}{{/min}}//{{^min}}enum {{name}}Enum { {{#values}} {{.}}, {{/values}} };{{/min}}{{/allowableValues}}{{/vars}}
 
   {{classname}}(
-    {{#vars}}{{^defaultValue}}{{#required}} this.{{name}}, {{/required}}{{/defaultValue}}{{/vars}}
+      {{#vars}}{{^defaultValue}}{{#required}} this.{{name}}, {{/required}}{{/defaultValue}}{{/vars}}
 
 {{#vendorExtensions}}{{#hasVars}}{
     {{#vars}}{{^required}} this.{{name}}{{#defaultValue}} = {{{defaultValue}}}{{#hasMore}}, {{/hasMore}} {{/defaultValue}}{{/required}}
@@ -21,7 +29,8 @@ class {{classname}} {
   }
 }
 
-@GenSerializer()
+@GenSerializer(nullableFields: {{nullableFields}})
 class {{classname}}Serializer extends Serializer<{{classname}}> with _${{classname}}Serializer {
 
 }
+{{/jsonFormat}}

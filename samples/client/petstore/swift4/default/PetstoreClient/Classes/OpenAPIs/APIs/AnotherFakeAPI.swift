@@ -5,17 +5,19 @@
 // https://openapi-generator.tech
 //
 
-import Alamofire
 import Foundation
+import Alamofire
+
+
 
 open class AnotherFakeAPI {
     /**
      To test special tags
-
-     - parameter client: (body) client model
+     
+     - parameter client: (body) client model 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func call123testSpecialTags(client: Client, completion: @escaping ((_ data: Client?, _ error: Error?) -> Void)) {
+    open class func call123testSpecialTags(client: Client, completion: @escaping ((_ data: Client?,_ error: Error?) -> Void)) {
         call123testSpecialTagsWithRequestBuilder(client: client).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -25,8 +27,8 @@ open class AnotherFakeAPI {
      To test special tags
      - PATCH /another-fake/dummy
      - To test special tags and operation ID starting with number
-     - parameter client: (body) client model
-     - returns: RequestBuilder<Client>
+     - parameter client: (body) client model 
+     - returns: RequestBuilder<Client> 
      */
     open class func call123testSpecialTagsWithRequestBuilder(client: Client) -> RequestBuilder<Client> {
         let path = "/another-fake/dummy"
@@ -39,4 +41,5 @@ open class AnotherFakeAPI {
 
         return requestBuilder.init(method: "PATCH", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
+
 }

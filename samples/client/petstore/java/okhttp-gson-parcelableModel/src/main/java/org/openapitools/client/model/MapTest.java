@@ -36,7 +36,7 @@ import android.os.Parcel;
 public class MapTest implements Parcelable {
   public static final String SERIALIZED_NAME_MAP_MAP_OF_STRING = "map_map_of_string";
   @SerializedName(SERIALIZED_NAME_MAP_MAP_OF_STRING)
-  private Map<String, Map<String, String>> mapMapOfString = null;
+  private Map<String, Map<String, String>> mapMapOfString = new HashMap<String, Map<String, String>>();
 
   /**
    * Gets or Sets inner
@@ -62,13 +62,13 @@ public class MapTest implements Parcelable {
       return String.valueOf(value);
     }
 
-    public static InnerEnum fromValue(String text) {
+    public static InnerEnum fromValue(String value) {
       for (InnerEnum b : InnerEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(value)) {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + text + "'");
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
 
     public static class Adapter extends TypeAdapter<InnerEnum> {
@@ -80,22 +80,22 @@ public class MapTest implements Parcelable {
       @Override
       public InnerEnum read(final JsonReader jsonReader) throws IOException {
         String value = jsonReader.nextString();
-        return InnerEnum.fromValue(String.valueOf(value));
+        return InnerEnum.fromValue(value);
       }
     }
   }
 
   public static final String SERIALIZED_NAME_MAP_OF_ENUM_STRING = "map_of_enum_string";
   @SerializedName(SERIALIZED_NAME_MAP_OF_ENUM_STRING)
-  private Map<String, InnerEnum> mapOfEnumString = null;
+  private Map<String, InnerEnum> mapOfEnumString = new HashMap<String, InnerEnum>();
 
   public static final String SERIALIZED_NAME_DIRECT_MAP = "direct_map";
   @SerializedName(SERIALIZED_NAME_DIRECT_MAP)
-  private Map<String, Boolean> directMap = null;
+  private Map<String, Boolean> directMap = new HashMap<String, Boolean>();
 
   public static final String SERIALIZED_NAME_INDIRECT_MAP = "indirect_map";
   @SerializedName(SERIALIZED_NAME_INDIRECT_MAP)
-  private Map<String, Boolean> indirectMap = null;
+  private Map<String, Boolean> indirectMap = new HashMap<String, Boolean>();
 
   public MapTest() {
   }
@@ -229,7 +229,6 @@ public class MapTest implements Parcelable {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class MapTest {\n");
-    
     sb.append("    mapMapOfString: ").append(toIndentedString(mapMapOfString)).append("\n");
     sb.append("    mapOfEnumString: ").append(toIndentedString(mapOfEnumString)).append("\n");
     sb.append("    directMap: ").append(toIndentedString(directMap)).append("\n");
